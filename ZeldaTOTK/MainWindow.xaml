@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ZeldaTOTK"
         mc:Ignorable="d"
 		WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="650">
+        Title="Switch The Legend of Zelda Tears of the Kingdom SaveDate Editor" Height="450" Width="650">
 	<Window.DataContext>
 		<local:ViewModel/>
 	</Window.DataContext>
@@ -28,7 +28,10 @@
 						<RowDefinition/>
 						<RowDefinition/>
 						<RowDefinition/>
-						<RowDefinition Height="8*"/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition Height="6*"/>
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition/>
@@ -40,12 +43,28 @@
 					<Label Content="Rupee"/>
 					<TextBox Grid.Column="1" Text="{Binding Basic.Rupee, UpdateSourceTrigger=PropertyChanged}"/>
 					<Label Grid.Row="1" Content="Heart"/>
-					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Basic.Heart, UpdateSourceTrigger=PropertyChanged}"/>
+					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Basic.Heart, Converter={StaticResource HeartConverter}, UpdateSourceTrigger=PropertyChanged}"/>
 					<Label Grid.Row="2" Content="Stamina"/>
 					<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Basic.Stamina, UpdateSourceTrigger=PropertyChanged}"/>
-					<Label Grid.Row="3" Content="Arrow"/>
-					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Basic.Arrow, UpdateSourceTrigger=PropertyChanged}"/>
+					<Label Grid.Row="3" Content="EnergyCrystal"/>
+					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Basic.EnergyCrystal, UpdateSourceTrigger=PropertyChanged}"/>
+					<Label Grid.Row="4" Content="Battery"/>
+					<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Basic.Battery, UpdateSourceTrigger=PropertyChanged}"/>
+					<Label Grid.Row="6" Content="Arrow"/>
+					<TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Basic.Arrow, UpdateSourceTrigger=PropertyChanged}"/>
 				</Grid>
+			</TabItem>
+			<TabItem Header="Armor">
+				<ListBox ItemsSource="{Binding Armors}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="ID"/>
+								<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
 			</TabItem>
 			<TabItem Header="Bow">
 				<DockPanel>

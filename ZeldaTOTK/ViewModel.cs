@@ -13,6 +13,7 @@ namespace ZeldaTOTK
 	{
 		public uint ItemCount { get; set; } = 999;
 		public Basic? Basic { get; private set; } = new Basic();
+		public ObservableCollection<Item> Armors { get; private set; } = new ObservableCollection<Item>();
 		public ObservableCollection<Item> Materials { get; private set; } = new ObservableCollection<Item>();
 		public ObservableCollection<Item> Foods { get; private set; } = new ObservableCollection<Item>();
 		public ObservableCollection<Item> Capsules { get; private set; } = new ObservableCollection<Item>();
@@ -41,10 +42,19 @@ namespace ZeldaTOTK
 			if (dlg.ShowDialog() == false) return;
 			SaveData.Instance().Open(dlg.FileName);
 
+			Armors.Clear();
 			Materials.Clear();
 			Foods.Clear();
+			Capsules.Clear();
 
-			for(uint index = 0; index < 400; index++)
+			for (uint index = 0; index < 400; index++)
+			{
+				Item item = new Item(0, 0x61BF8 + index * 64);
+				if (String.IsNullOrEmpty(item.Name)) break;
+				Armors.Add(item);
+			}
+
+			for (uint index = 0; index < 400; index++)
 			{
 				Item item = new Item(0x477E0 + index * 4, 0xAFC30 + index * 64);
 				if (item.Count == 0xFFFFFFFF) break;

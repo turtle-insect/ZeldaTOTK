@@ -14,7 +14,7 @@ namespace ZeldaTOTK
 			set
 			{
 				if (value < 1) value = 1;
-				if (value > 20) value = 20;
+				if (value > 40) value = 40;
 				SaveData.Instance().WriteNumber(0x29A44, 4, value);
 			}
 		}
@@ -44,6 +44,21 @@ namespace ZeldaTOTK
 			}
 		}
 
+		public float Battery
+		{
+			get
+			{
+				return BitConverter.ToSingle(SaveData.Instance().ReadValue(0x34FC4, 4));
+			}
+
+			set
+			{
+				if (value < 3000) value = 3000;
+				if (value > 24000) value = 24000;
+				SaveData.Instance().WriteValue(0x34FC4, BitConverter.GetBytes(value));
+			}
+		}
+
 		public uint Arrow
 		{
 			get => SaveData.Instance().ReadNumber(0x47030, 4);
@@ -51,6 +66,16 @@ namespace ZeldaTOTK
 			{
 				if (value > 999) value = 999;
 				SaveData.Instance().WriteNumber(0x47030, 4, value);
+			}
+		}
+
+		public uint EnergyCrystal
+		{
+			get => SaveData.Instance().ReadNumber(0x4EBF4, 4);
+			set
+			{
+				if (value > 999) value = 999;
+				SaveData.Instance().WriteNumber(0x4EBF4, 4, value);
 			}
 		}
 	}

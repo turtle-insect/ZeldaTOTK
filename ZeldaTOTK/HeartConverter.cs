@@ -18,8 +18,10 @@ namespace ZeldaTOTK
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			var count = (uint)(int)value * 4;
-			return count;
+			uint count = 0;
+			if (!uint.TryParse(value.ToString(), out count)) return 0;
+
+			return count * 4;
 		}
 	}
 }
