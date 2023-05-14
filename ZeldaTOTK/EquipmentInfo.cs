@@ -5,25 +5,29 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ZeldaTOTK
 {
-	internal class Equipments
+	internal class EquipmentInfo
 	{
 		private readonly uint mCountAddress;
 		private readonly uint mNameAddress;
+		private readonly uint mEnduranceAddress;
 		private readonly uint mLimitCount;
 
-		public ObservableCollection<NameObject> Names { get; private set; } = new ObservableCollection<NameObject>();
+		public ObservableCollection<Equipment> Equipments { get; private set; } = new ObservableCollection<Equipment>();
 
-		public Equipments(uint countAddress, uint nameAddress, uint limitCount)
+		public EquipmentInfo(uint countAddress, uint nameAddress, uint enduranceAddress, uint limitCount)
 		{
 			mCountAddress = countAddress;
 			mNameAddress = nameAddress;
+			mEnduranceAddress = enduranceAddress;
 			mLimitCount = limitCount;
 			for (uint index = 0; index < Count; index++)
 			{
-				Names.Add(new NameObject(nameAddress + index * 64));
+				var equipment = new Equipment(nameAddress + index * 64, enduranceAddress + index * 4);
+				Equipments.Add(equipment);
 			}
 		}
 
@@ -37,7 +41,9 @@ namespace ZeldaTOTK
 		{
 			if (Count >= mLimitCount) return;
 
-			Names.Add(new NameObject(mNameAddress + Count * 64));
+			var equipment = new Equipment(mNameAddress + Count * 64, mEnduranceAddress + Count * 4);
+			equipment.Init();
+			Equipments.Add(equipment);
 			Count++;
 		}
 	}

@@ -50,14 +50,24 @@
 			<TabItem Header="Bow">
 				<DockPanel>
 					<Button DockPanel.Dock="Bottom" Content="Append" Command="{Binding IncrementLimitCountCommand}"
-							CommandParameter="{Binding Bows}"/>
-					<ListBox ItemsSource="{Binding Bows.Names}">
+							CommandParameter="{Binding Bows.Equipments}"/>
+					<ListBox ItemsSource="{Binding Bows.Equipments}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
-								<StackPanel Orientation="Horizontal">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition/>
+										<RowDefinition/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition/>
+										<ColumnDefinition/>
+									</Grid.ColumnDefinitions>
 									<Label Content="ID"/>
-									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
-								</StackPanel>
+									<TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+									<Label Grid.Row="1" Content="Endurance"/>
+									<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Endurance, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</Grid>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
 					</ListBox>
@@ -66,14 +76,24 @@
 			<TabItem Header="Shield">
 				<DockPanel>
 					<Button DockPanel.Dock="Bottom" Content="Append" Command="{Binding IncrementLimitCountCommand}"
-							CommandParameter="{Binding Shields}"/>
-					<ListBox ItemsSource="{Binding Shields.Names}">
+							CommandParameter="{Binding Shields.Equipments}"/>
+					<ListBox ItemsSource="{Binding Shields.Equipments}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
-								<StackPanel Orientation="Horizontal">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition/>
+										<RowDefinition/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition/>
+										<ColumnDefinition/>
+									</Grid.ColumnDefinitions>
 									<Label Content="ID"/>
-									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
-								</StackPanel>
+									<TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+									<Label Grid.Row="1" Content="Endurance"/>
+									<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Endurance, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</Grid>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
 					</ListBox>
@@ -81,16 +101,25 @@
 			</TabItem>
 			<TabItem Header="Weapon">
 				<DockPanel>
-					<Button DockPanel.Dock="Bottom" Content="Append"
-							Command="{Binding IncrementLimitCountCommand}"
-							CommandParameter="{Binding Weapons}"/>
-					<ListBox ItemsSource="{Binding Weapons.Names}">
+					<Button DockPanel.Dock="Bottom" Content="Append" Command="{Binding IncrementLimitCountCommand}"
+							CommandParameter="{Binding Weapons.Equipments}"/>
+					<ListBox ItemsSource="{Binding Weapons.Equipments}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
-								<StackPanel Orientation="Horizontal">
+								<Grid>
+									<Grid.RowDefinitions>
+										<RowDefinition/>
+										<RowDefinition/>
+									</Grid.RowDefinitions>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition/>
+										<ColumnDefinition/>
+									</Grid.ColumnDefinitions>
 									<Label Content="ID"/>
-									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
-								</StackPanel>
+									<TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+									<Label Grid.Row="1" Content="Endurance"/>
+									<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Endurance, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</Grid>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
 					</ListBox>
@@ -111,7 +140,7 @@
 									<Label Content="Count"/>
 									<TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
 									<Label Content="ID"/>
-									<TextBox Text="{Binding Name.Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
 								</StackPanel>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
@@ -133,7 +162,7 @@
 									<Label Content="Count"/>
 									<TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
 									<Label Content="ID"/>
-									<TextBox Text="{Binding Name.Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
 								</StackPanel>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
@@ -155,7 +184,7 @@
 									<Label Content="Count"/>
 									<TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
 									<Label Content="ID"/>
-									<TextBox Text="{Binding Name.Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
 								</StackPanel>
 							</DataTemplate>
 						</ListBox.ItemTemplate>

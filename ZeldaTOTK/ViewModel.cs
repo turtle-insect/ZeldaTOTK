@@ -16,9 +16,9 @@ namespace ZeldaTOTK
 		public ObservableCollection<Item> Materials { get; private set; } = new ObservableCollection<Item>();
 		public ObservableCollection<Item> Foods { get; private set; } = new ObservableCollection<Item>();
 		public ObservableCollection<Item> Capsules { get; private set; } = new ObservableCollection<Item>();
-		public Equipments? Bows { get; private set; }
-		public Equipments? Shields { get; private set; }
-		public Equipments? Weapons { get; private set; }
+		public EquipmentInfo? Bows { get; private set; }
+		public EquipmentInfo? Shields { get; private set; }
+		public EquipmentInfo? Weapons { get; private set; }
 
 		public CommandAction? FileOpenCommand { get; private set; }
 		public CommandAction? FileSaveCommand { get; private set; }
@@ -71,9 +71,9 @@ namespace ZeldaTOTK
 				Capsules.Add(item);
 			}
 
-			Bows = new Equipments(0x4766C, 0x7B520, 14);
-			Shields = new Equipments(0x4D0BC, 0x7612C, 20);
-			Weapons = new Equipments(0x4AAA0, 0xC3B94, 20);
+			Bows = new EquipmentInfo(0x4766C, 0x7B520, 0x4AAF4, 14);
+			Shields = new EquipmentInfo(0x4D0BC, 0x7612C, 0x4A3EC, 20);
+			Weapons = new EquipmentInfo(0x4AAA0, 0xC3B94, 0x4D1FC, 20);
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Basic)));
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Bows)));
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Shields)));
@@ -87,7 +87,7 @@ namespace ZeldaTOTK
 
 		private void IncrementLimitCount(Object? obj)
 		{
-			var equipment = obj as Equipments;
+			var equipment = obj as EquipmentInfo;
 			if (equipment == null) return;
 
 			equipment.IncrementLimitCount();
