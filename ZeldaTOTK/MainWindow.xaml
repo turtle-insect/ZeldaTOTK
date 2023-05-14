@@ -1,0 +1,167 @@
+﻿<Window x:Class="ZeldaTOTK.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZeldaTOTK"
+        mc:Ignorable="d"
+		WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="650">
+	<Window.DataContext>
+		<local:ViewModel/>
+	</Window.DataContext>
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="File">
+				<MenuItem Header="Open" Command="{Binding FileOpenCommand}"/>
+				<MenuItem Header="Save" Command="{Binding FileSaveCommand}"/>
+			</MenuItem>
+		</Menu>
+		<TabControl>
+			<TabItem Header="Basic">
+				<TabItem.Resources>
+					<local:HeartConverter x:Key="HeartConverter"/>
+				</TabItem.Resources>
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition Height="8*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="5"/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Label Content="Rupee"/>
+					<TextBox Grid.Column="1" Text="{Binding Basic.Rupee, UpdateSourceTrigger=PropertyChanged}"/>
+					<Label Grid.Row="1" Content="Heart"/>
+					<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Basic.Heart, UpdateSourceTrigger=PropertyChanged}"/>
+					<Label Grid.Row="2" Content="Stamina"/>
+					<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Basic.Stamina, UpdateSourceTrigger=PropertyChanged}"/>
+					<Label Grid.Row="3" Content="Arrow"/>
+					<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Basic.Arrow, UpdateSourceTrigger=PropertyChanged}"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Bow">
+				<DockPanel>
+					<Button DockPanel.Dock="Bottom" Content="Append" Command="{Binding IncrementLimitCountCommand}"
+							CommandParameter="{Binding Bows}"/>
+					<ListBox ItemsSource="{Binding Bows.Names}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Label Content="ID"/>
+									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Shield">
+				<DockPanel>
+					<Button DockPanel.Dock="Bottom" Content="Append" Command="{Binding IncrementLimitCountCommand}"
+							CommandParameter="{Binding Shields}"/>
+					<ListBox ItemsSource="{Binding Shields.Names}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Label Content="ID"/>
+									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Weapon">
+				<DockPanel>
+					<Button DockPanel.Dock="Bottom" Content="Append"
+							Command="{Binding IncrementLimitCountCommand}"
+							CommandParameter="{Binding Weapons}"/>
+					<ListBox ItemsSource="{Binding Weapons.Names}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Label Content="ID"/>
+									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Material">
+				<DockPanel>
+					<DockPanel DockPanel.Dock="Bottom">
+						<Label DockPanel.Dock="Left" Content="All Item"/>
+						<Button DockPanel.Dock="Right" Content="Execution"
+								Command="{Binding ChangeAllItemCountCommand}" CommandParameter="{Binding Materials}"/>
+						<TextBox Text="{Binding ItemCount}"/>
+					</DockPanel>
+					<ListBox ItemsSource="{Binding Materials}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Label Content="Count"/>
+									<TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
+									<Label Content="ID"/>
+									<TextBox Text="{Binding Name.Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Food">
+				<DockPanel>
+					<DockPanel DockPanel.Dock="Bottom">
+						<Label DockPanel.Dock="Left" Content="All Item"/>
+						<Button DockPanel.Dock="Right" Content="Execution"
+								Command="{Binding ChangeAllItemCountCommand}" CommandParameter="{Binding Foods}"/>
+						<TextBox Text="{Binding ItemCount}"/>
+					</DockPanel>
+					<ListBox ItemsSource="{Binding Foods}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Label Content="Count"/>
+									<TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
+									<Label Content="ID"/>
+									<TextBox Text="{Binding Name.Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</TabItem>
+			<TabItem Header="Capsule">
+				<DockPanel>
+					<DockPanel DockPanel.Dock="Bottom">
+						<Label DockPanel.Dock="Left" Content="All Item"/>
+						<Button DockPanel.Dock="Right" Content="Execution"
+								Command="{Binding ChangeAllItemCountCommand}" CommandParameter="{Binding Capsules}"/>
+						<TextBox Text="{Binding ItemCount}"/>
+					</DockPanel>
+					<ListBox ItemsSource="{Binding Capsules}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Label Content="Count"/>
+									<TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
+									<Label Content="ID"/>
+									<TextBox Text="{Binding Name.Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</DockPanel>
+			</TabItem>
+		</TabControl>
+	</DockPanel>
+</Window>
