@@ -1,3 +1,5 @@
+![DL Count](https://img.shields.io/github/downloads/turtle-insect/ZeldaTOTK/total.svg)
+
 # ZeldaTOTK
 Switch The Legend of Zelda Tears of the Kingdom SaveDate Editor
 
