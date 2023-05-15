@@ -4,7 +4,7 @@
 Switch The Legend of Zelda Tears of the Kingdom SaveDate Editor
 
 # Sample
-<img src=https://github.com/turtle-insect/ZeldaTOTK/assets/30800900/bc1f46f8-ad61-4de2-a5ef-9998667b27fb/>
+<img src=https://github.com/turtle-insect/ZeldaTOTK/assets/30800900/6fca519d-0825-47e7-b685-0d798b69bb32/>
 
 # Portal
 https://www.nintendo.co.jp/zelda/totk/index.html
