@@ -68,15 +68,5 @@ namespace ZeldaTOTK
 				SaveData.Instance().WriteNumber(0x47030, 4, value);
 			}
 		}
-
-		public uint EnergyCrystal
-		{
-			get => SaveData.Instance().ReadNumber(0x4EBF4, 4);
-			set
-			{
-				if (value > 999) value = 999;
-				SaveData.Instance().WriteNumber(0x4EBF4, 4, value);
-			}
-		}
 	}
 }

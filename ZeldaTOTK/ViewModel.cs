@@ -17,6 +17,7 @@ namespace ZeldaTOTK
 		public ObservableCollection<Item> Materials { get; private set; } = new ObservableCollection<Item>();
 		public ObservableCollection<Item> Foods { get; private set; } = new ObservableCollection<Item>();
 		public ObservableCollection<Item> Capsules { get; private set; } = new ObservableCollection<Item>();
+		public ObservableCollection<Item> KeyItems { get; private set; } = new ObservableCollection<Item>();
 		public EquipmentInfo? Bows { get; private set; }
 		public EquipmentInfo? Shields { get; private set; }
 		public EquipmentInfo? Weapons { get; private set; }
@@ -79,6 +80,16 @@ namespace ZeldaTOTK
 				if (item.Count == 0) break;
 
 				Capsules.Add(item);
+			}
+
+			for (uint index = 0; index < 400; index++)
+			{
+				Item item = new Item(0x4EBD4 + index * 4, 0xB94C4 + index * 64);
+				if (String.IsNullOrWhiteSpace(item.Name) && item.Count == 0xFFFFFFFF) break;
+				if (item.Count == 0) break;
+				if (item.Count == 0xFFFFFFFF) continue;
+
+				KeyItems.Add(item);
 			}
 
 			Bows = new EquipmentInfo(0x4766C, 0x7B520, 0x4AAF4, 14);
