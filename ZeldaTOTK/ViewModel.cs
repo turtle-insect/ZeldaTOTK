@@ -55,7 +55,8 @@ namespace ZeldaTOTK
 				Armors.Add(item);
 			}
 
-			for (uint index = 0; index < 400; index++)
+			uint count = SaveData.Instance().ReadNumber(0x477DC, 4);
+			for (uint index = 0; index < count; index++)
 			{
 				Item item = new Item(0x477E0 + index * 4, 0xAFC30 + index * 64);
 				if (item.Count == 0xFFFFFFFF) break;
@@ -64,7 +65,8 @@ namespace ZeldaTOTK
 				Materials.Add(item);
 			}
 
-			for (uint index = 0; index < 400; index++)
+			count = SaveData.Instance().ReadNumber(0x4E9BC, 4);
+			for (uint index = 0; index < count; index++)
 			{
 				Item item = new Item(0x4E9C0 + index * 4, 0x87CE0 + index * 64);
 				if (item.Count == 0xFFFFFFFF) break;
@@ -73,7 +75,8 @@ namespace ZeldaTOTK
 				Foods.Add(item);
 			}
 
-			for (uint index = 0; index < 400; index++)
+			count = SaveData.Instance().ReadNumber(0x46180, 4);
+			for (uint index = 0; index < count; index++)
 			{
 				Item item = new Item(0x46184 + index * 4, 0x9CBAC + index * 64);
 				if (item.Count == 0xFFFFFFFF) break;
@@ -82,7 +85,8 @@ namespace ZeldaTOTK
 				Capsules.Add(item);
 			}
 
-			for (uint index = 0; index < 400; index++)
+			count = SaveData.Instance().ReadNumber(0x4EBD0, 4);
+			for (uint index = 0; index < count; index++)
 			{
 				Item item = new Item(0x4EBD4 + index * 4, 0xB94C4 + index * 64);
 				if (String.IsNullOrWhiteSpace(item.Name) && item.Count == 0xFFFFFFFF) break;

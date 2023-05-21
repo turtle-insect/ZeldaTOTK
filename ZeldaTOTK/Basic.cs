@@ -54,7 +54,7 @@ namespace ZeldaTOTK
 			set
 			{
 				if (value < 3000) value = 3000;
-				if (value > 24000) value = 24000;
+				if (value > 48000) value = 48000;
 				SaveData.Instance().WriteValue(0x34FC4, BitConverter.GetBytes(value));
 			}
 		}
