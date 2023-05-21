@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZeldaTOTK"
+		xmlns:prop="clr-namespace:ZeldaTOTK.Properties"
         mc:Ignorable="d"
 		WindowStartupLocation="CenterScreen"
         Title="Switch The Legend of Zelda Tears of the Kingdom SaveDate Editor" Height="450" Width="650">
 	<Window.DataContext>
 		<local:ViewModel/>
 	</Window.DataContext>
+	<Window.Resources>
+		<local:CapsuleIDNameConverter x:Key="CapsuleIDNameConverter"/>
+	</Window.Resources>
 	<DockPanel>
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="File">
@@ -17,6 +21,12 @@
 				<MenuItem Header="Save" Command="{Binding FileSaveCommand}"/>
 			</MenuItem>
 		</Menu>
+		<ToolBar DockPanel.Dock="Top">
+			<ComboBox SelectedIndex="{Binding Path=lang, Source={x:Static prop:Settings.Default}}">
+				<ComboBoxItem Content="English"/>
+				<ComboBoxItem Content="日本語"/>
+			</ComboBox>
+		</ToolBar>
 		<TabControl>
 			<TabItem Header="Basic">
 				<TabItem.Resources>
@@ -145,7 +155,7 @@
 			<TabItem Header="Material">
 				<DockPanel>
 					<DockPanel DockPanel.Dock="Bottom">
-						<Label DockPanel.Dock="Left" Content="All Item"/>
+						<Label DockPanel.Dock="Left" Content="All Item Count"/>
 						<Button DockPanel.Dock="Right" Content="Execution"
 								Command="{Binding ChangeAllItemCountCommand}" CommandParameter="{Binding Materials}"/>
 						<TextBox Text="{Binding ItemCount}"/>
@@ -167,7 +177,7 @@
 			<TabItem Header="Food">
 				<DockPanel>
 					<DockPanel DockPanel.Dock="Bottom">
-						<Label DockPanel.Dock="Left" Content="All Item"/>
+						<Label DockPanel.Dock="Left" Content="All Item Count"/>
 						<Button DockPanel.Dock="Right" Content="Execution"
 								Command="{Binding ChangeAllItemCountCommand}" CommandParameter="{Binding Foods}"/>
 						<TextBox Text="{Binding ItemCount}"/>
@@ -189,19 +199,21 @@
 			<TabItem Header="Capsule">
 				<DockPanel>
 					<DockPanel DockPanel.Dock="Bottom">
-						<Label DockPanel.Dock="Left" Content="All Item"/>
+						<Label DockPanel.Dock="Left" Content="All Item Count"/>
 						<Button DockPanel.Dock="Right" Content="Execution"
 								Command="{Binding ChangeAllItemCountCommand}" CommandParameter="{Binding Capsules}"/>
 						<TextBox Text="{Binding ItemCount}"/>
 					</DockPanel>
+					<Button DockPanel.Dock="Bottom" Content="All Item"
+							Command="{Binding GetAllItemCommand}"
+							CommandParameter="{Binding Capsules}"/>
 					<ListBox ItemsSource="{Binding Capsules}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
 								<StackPanel Orientation="Horizontal">
 									<Label Content="Count"/>
 									<TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Width="60"/>
-									<Label Content="ID"/>
-									<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="250"/>
+									<Label Content="{Binding Name, Converter={StaticResource CapsuleIDNameConverter}}"/>
 								</StackPanel>
 							</DataTemplate>
 						</ListBox.ItemTemplate>
@@ -211,7 +223,7 @@
 			<TabItem Header="KeyItem">
 				<DockPanel>
 					<DockPanel DockPanel.Dock="Bottom">
-						<Label DockPanel.Dock="Left" Content="All Item"/>
+						<Label DockPanel.Dock="Left" Content="All Item Count"/>
 						<Button DockPanel.Dock="Right" Content="Execution"
 								Command="{Binding ChangeAllItemCountCommand}" CommandParameter="{Binding KeyItems}"/>
 						<TextBox Text="{Binding ItemCount}"/>

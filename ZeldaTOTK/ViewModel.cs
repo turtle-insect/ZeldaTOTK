@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace ZeldaTOTK
 {
 	internal class ViewModel : INotifyPropertyChanged
 	{
+		public Info Info { get; private set; } = Info.Instance();
 		public uint ItemCount { get; set; } = 999;
 		public Basic? Basic { get; private set; } = new Basic();
 		public ObservableCollection<Item> Armors { get; private set; } = new ObservableCollection<Item>();
@@ -26,6 +28,7 @@ namespace ZeldaTOTK
 		public CommandAction? FileSaveCommand { get; private set; }
 		public CommandAction? IncrementLimitCountCommand { get; private set; }
 		public CommandAction? ChangeAllItemCountCommand { get; private set; }
+		public CommandAction? GetAllItemCommand { get; private set; }
 
 		public ViewModel()
 		{
@@ -33,6 +36,7 @@ namespace ZeldaTOTK
 			FileSaveCommand = new CommandAction(SaveFile);
 			IncrementLimitCountCommand = new CommandAction(IncrementLimitCount);
 			ChangeAllItemCountCommand = new CommandAction(ChangeAllItemCount);
+			GetAllItemCommand = new CommandAction(GetAllItem);
 		}
 
 		public event PropertyChangedEventHandler? PropertyChanged;
@@ -126,6 +130,26 @@ namespace ZeldaTOTK
 			foreach (var item in items)
 			{
 				item.Count = ItemCount;
+			}
+		}
+
+		private void GetAllItem(Object? obj)
+		{
+			var items = obj as ObservableCollection<Item>;
+			if (items == null) return;
+			if (items != Capsules) return;
+
+			items.Clear();
+			uint count = 0x46184;
+			uint name = 0x9CBAC;
+			foreach (var info in Info.Instance().Capsule)
+			{
+				var item = new Item(count, name);
+				item.Count = ItemCount;
+				item.Name = info.Key;
+				items.Add(item);
+				count += 4;
+				name += 64;
 			}
 		}
 	}
