@@ -68,5 +68,11 @@ namespace ZeldaTOTK
 				SaveData.Instance().WriteNumber(0x47030, 4, value);
 			}
 		}
+
+		public bool Capsule
+		{
+			get => SaveData.Instance().ReadNumber(0x4374C, 1) == 3;
+			set => SaveData.Instance().WriteNumber(0x4374C, 1, value ? 3U : 0);
+		}
 	}
 }
